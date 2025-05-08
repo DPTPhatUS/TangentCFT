@@ -1,6 +1,7 @@
 __author__ = 'KDavila'
 
-import TangentS.math_tan
+# import TangentS.math_tan
+import math
 from .math_symbol import MathSymbol
 from .mathml import MathML
 from .exceptions import UnknownTagException
@@ -413,7 +414,7 @@ class SemanticSymbol(MathSymbol):
                                "assign", "asymptotically-equals", "because", "between", "binomial", "bottom",
                                "bra", "cases", "complement", "conditional-set",
                                "contains", "continued-fraction", "contour-integral",
-                               "coproduct", "currency-dollar", "degree", "difference-between",
+                               "coproduct", "currency-dollar", "degree", "difference-between", "differential-d",
                                "dimension", "direct-product", "direct-sum", "divides", "does-not-prove",
                                "double-integral", "double-intersection", "double-subset-of", "double-superset-of",
                                "double-union",
@@ -427,8 +428,8 @@ class SemanticSymbol(MathSymbol):
                                "injective-limit", "inner-product",
                                "kernel", "ket", "left-normal-factor-semidirect-product", "left-semidirect-product",
                                "less-than-or-approximately-equals", "less-than-or-similar-to",
-                               "limit-from", "limit-infimum", "limit-supremum", "maps-to", "minus-or-plus", "models",
-                               "much-greater-than", "much-less-than",
+                               "limit-from", "limit-infimum", "limit-supremum", "maps-to", "matrix", "minus-or-plus",
+                               "models", "much-greater-than", "much-less-than",
                                "norm", "not-and", "not-approximately-equals", "not-contains",
                                "not-contains-nor-equals", "not-divides",
                                "not-equivalent-to", "not-exists", "not-forces",
@@ -555,7 +556,7 @@ class SemanticSymbol(MathSymbol):
     def split_node(node):
         if len(node.children) > SemanticSymbol.MaxChildren:
             # do a binary split
-            mid_point = math_tan.ceil(len(node.children) / 2.0)
+            mid_point = math.ceil(len(node.children) / 2.0)
 
             # create new parents ...
             left_child = SemanticSymbol(node.tag, children=node.children[:mid_point], parent=node)
